@@ -1,1 +1,890 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prof. Valdivino dos Santos | Personal Trainer em Lagarto - SE</title>
+    <meta name="description" content="Personal Trainer de Elite em Lagarto e Região. Metodologia avançada, treinos personalizados e resultados reais garantidos.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <style>
+        /* =========================================
+           VARIÁVEIS DE ESTILO E RESET
+           ========================================= */
+        :root {
+            --bg-dark: #000000;
+            --bg-secondary: #121212;
+            --neon-green: #00FF66;
+            --neon-green-hover: #00E676;
+            --text-light: #FFFFFF;
+            --text-muted: #A0A0A0;
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 0;
+        }
+
+        /* =========================================
+           BOTÕES MODERNOS COM EFEITO GLOW
+           ========================================= */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background-color: var(--neon-green);
+            color: var(--bg-dark);
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.4);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--neon-green-hover);
+            box-shadow: 0 0 25px rgba(0, 255, 102, 0.8);
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--neon-green);
+            border: 2px solid var(--neon-green);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--neon-green);
+            color: var(--bg-dark);
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.6);
+        }
+
+        /* =========================================
+           HEADER FIXO
+           ========================================= */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 1000;
+            transition: var(--transition);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        header.scrolled {
+            padding: 15px 0;
+            background: rgba(0, 0, 0, 0.95);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--neon-green);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-green);
+        }
+
+        .header-cta {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-cta .btn {
+            padding: 10px 20px;
+            font-size: 0.85rem;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--neon-green);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* =========================================
+           HERO SECTION
+           ========================================= */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            /* Substitua 'img/gym-bg.jpg' por uma imagem de fundo de academia moderna */
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.95)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop') center/cover no-repeat;
+            padding-top: 80px;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-text h1 span {
+            color: var(--neon-green);
+            text-shadow: 0 0 20px rgba(0, 255, 102, 0.4);
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 90%;
+        }
+
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 20px;
+            /* Substitua 'img/valdivino-hero.jpg' pela foto de corpo inteiro/meio corpo do professor segurando o tablet */
+            box-shadow: 0 0 40px rgba(0, 255, 102, 0.2);
+            border: 2px solid rgba(0, 255, 102, 0.3);
+            object-fit: cover;
+            height: 600px;
+        }
+
+        /* =========================================
+           SEÇÃO SOBRE MIM
+           ========================================= */
+        #sobre {
+            background-color: var(--bg-secondary);
+        }
+
+        .sobre-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .sobre-image img {
+            width: 100%;
+            border-radius: 20px;
+            /* Substitua 'img/valdivino-perfil.jpg' pela foto de perfil profissional sorrindo */
+            box-shadow: 0 0 30px rgba(0, 255, 102, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sobre-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+        }
+
+        .sobre-text h2 span {
+            color: var(--neon-green);
+        }
+
+        .sobre-text p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .destaques-list {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .destaques-list li {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .destaques-list i {
+            color: var(--neon-green);
+            font-size: 1.2rem;
+        }
+
+        /* =========================================
+           ESPECIALIDADES
+           ========================================= */
+        #especialidades {
+            background-color: var(--bg-dark);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2 span {
+            color: var(--neon-green);
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--bg-secondary);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 255, 102, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 255, 102, 0.15);
+        }
+
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 2px solid var(--neon-green);
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .card-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* =========================================
+           DEPOIMENTOS
+           ========================================= */
+        #depoimentos {
+            background-color: var(--bg-secondary);
+        }
+
+        .depoimentos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .depoimento-card {
+            background-color: var(--bg-dark);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+
+        .depoimento-card i.fa-quote-left {
+            color: var(--neon-green);
+            font-size: 2rem;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .depoimento-card p {
+            font-style: italic;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+        }
+
+        .cliente-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .cliente-info img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--neon-green);
+        }
+
+        .cliente-info h4 {
+            font-size: 1rem;
+            margin-bottom: 2px;
+        }
+
+        .cliente-info span {
+            font-size: 0.8rem;
+            color: var(--neon-green);
+        }
+
+        /* =========================================
+           CONTATO E CTA FINAL
+           ========================================= */
+        #contato {
+            background: linear-gradient(135deg, rgba(0, 230, 118, 0.15) 0%, rgba(0, 0, 0, 1) 100%);
+            text-align: center;
+            border-top: 1px solid rgba(0, 255, 102, 0.2);
+        }
+
+        .contato-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contato-content h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+
+        .contato-content h2 span {
+            color: var(--neon-green);
+        }
+
+        .contato-content p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        .btn-whatsapp-grande {
+            font-size: 1.2rem;
+            padding: 20px 50px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 255, 102, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(0, 255, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 255, 102, 0); }
+        }
+
+        /* =========================================
+           FOOTER
+           ========================================= */
+        footer {
+            background-color: #000000;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--neon-green);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--bg-secondary);
+            color: var(--text-light);
+            font-size: 1.2rem;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--neon-green);
+            color: var(--bg-dark);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin-top: 20px;
+        }
+
+        /* =========================================
+           RESPONSIVIDADE (MOBILE)
+           ========================================= */
+        @media (max-width: 992px) {
+            .hero-container, .sobre-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-text p {
+                margin: 0 auto 30px auto;
+            }
+
+            .hero-image img {
+                height: auto;
+                max-height: 500px;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.95);
+                padding: 20px;
+                border-bottom: 1px solid rgba(0, 255, 102, 0.3);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .header-cta {
+                display: none;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-title h2, .sobre-text h2, .contato-content h2 {
+                font-size: 2rem;
+            }
+
+            .btn-whatsapp-grande {
+                font-size: 1rem;
+                padding: 15px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. HEADER / CABEÇALHO FIXO -->
+    <header id="header">
+        <div class="header-content">
+            <a href="#" class="logo">VS <span>|</span> VALDIVINO DOS SANTOS</a>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#especialidades">Especialidades</a></li>
+                <li><a href="#depoimentos">Depoimentos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+
+            <div class="header-cta">
+                <!-- Link do WhatsApp com mensagem pré-definida -->
+                <a href="https://wa.me/5579980516149?text=Ol%C3%A1%20Professor%20Valdivino!%20Gostaria%20de%20saber%20mais%20sobre%20a%20consultoria." target="_blank" class="btn btn-primary">
+                    <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+                </a>
+            </div>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- 2. HERO SECTION -->
+    <section id="hero">
+        <div class="hero-container">
+            <div class="hero-text">
+                <h1>TRANSFORME SEU CORPO COM O PROFESSOR <span>VALDIVINO DOS SANTOS</span></h1>
+                <p>Personal Trainer de Elite em Lagarto e Região. Metodologia avançada, treinos personalizados e resultados reais garantidos.</p>
+                <a href="https://wa.me/5579980516149?text=Ol%C3%A1%20Professor%20Valdivino!%20Quero%20minha%20consultoria." target="_blank" class="btn btn-primary">
+                    QUERO MINHA CONSULTORIA AGORA <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="hero-image">
+                <!-- SUBSTITUA A IMAGEM ABAIXO PELA FOTO DO PROFESSOR SEGURANDO O TABLET -->
+                <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1470&auto=format&fit=crop" alt="Professor Valdivino dos Santos - Personal Trainer">
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. SEÇÃO SOBRE MIM -->
+    <section id="sobre">
+        <div class="container sobre-container">
+            <div class="sobre-image">
+                <!-- SUBSTITUA A IMAGEM ABAIXO PELA FOTO DE PERFIL DO PROFESSOR SORRINDO -->
+                <img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?q=80&w=1470&auto=format&fit=crop" alt="Valdivino dos Santos - Perfil">
+            </div>
+            <div class="sobre-text">
+                <h2>EXPERIÊNCIA E <span>COMPROMISSO</span> COM OS SEUS RESULTADOS</h2>
+                <p>Sou Valdivino dos Santos, graduado em Educação Física pela Unicesumar e apaixonado por transformar vidas através do movimento. Com anos de experiência, minha missão é elevar a saúde, a estética e a performance de cada aluno.</p>
+                <p>Minha metodologia é baseada em ciência, segurança e dedicação total. Não entrego apenas treinos, entrego um acompanhamento completo focado no seu objetivo, seja ele hipertrofia, emagrecimento ou condicionamento.</p>
+                
+                <ul class="destaques-list">
+                    <li><i class="fas fa-check-circle"></i> Graduação em Educação Física (Unicesumar)</li>
+                    <li><i class="fas fa-check-circle"></i> Treinos 100% Personalizados</li>
+                    <li><i class="fas fa-check-circle"></i> Acompanhamento Presencial e Online</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. SEÇÃO DE ESPECIALIDADES -->
+    <section id="especialidades">
+        <div class="container">
+            <div class="section-title">
+                <h2>ESPECIALIDADES E <span>METODOLOGIA</span></h2>
+                <p>Treinos desenvolvidos sob medida para o seu biotipo e objetivo, com acompanhamento profissional de excelência.</p>
+            </div>
+
+            <div class="cards-grid">
+                <!-- CARD 1 -->
+                <div class="card">
+                    <!-- SUBSTITUA A IMAGEM: Foto do professor ajustando carga / acompanhando supino -->
+                    <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1470&auto=format&fit=crop" alt="Hipertrofia e Ganho de Massa Muscular">
+                    <div class="card-content">
+                        <h3>Hipertrofia e Ganho de Massa</h3>
+                        <p>Treinos focados no estímulo máximo da musculatura, com controle de cargas e periodização avançada para resultados rápidos.</p>
+                    </div>
+                </div>
+
+                <!-- CARD 2 -->
+                <div class="card">
+                    <!-- SUBSTITUA A IMAGEM: Foto liderando treinamento dinâmico / circuito -->
+                    <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1470&auto=format&fit=crop" alt="Emagrecimento e Definição">
+                    <div class="card-content">
+                        <h3>Emagrecimento e Definição</h3>
+                        <p>Metodologia focada em alto gasto calórico e preservação de massa magra. Transforme sua composição corporal com eficiência.</p>
+                    </div>
+                </div>
+
+                <!-- CARD 3 -->
+                <div class="card">
+                    <!-- SUBSTITUA A IMAGEM: Foto utilizando corda naval ou acessórios -->
+                    <img src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?q=80&w=1470&auto=format&fit=crop" alt="Treinamento Funcional">
+                    <div class="card-content">
+                        <h3>Funcional e Condicionamento</h3>
+                        <p>Melhore sua capacidade cardiorrespiratória, mobilidade e força para as atividades do dia a dia com treinos dinâmicos.</p>
+                    </div>
+                </div>
+
+                <!-- CARD 4 -->
+                <div class="card">
+                    <!-- SUBSTITUA A IMAGEM: Foto analisando planejamento em tablet na academia -->
+                    <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=1470&auto=format&fit=crop" alt="Consultoria Online">
+                    <div class="card-content">
+                        <h3>Consultoria Presencial e Online</h3>
+                        <p>Para quem precisa de flexibilidade. Receba seu planejamento digital e acompanhamento de onde estiver, com a mesma qualidade.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. SEÇÃO DE DEPOIMENTOS -->
+    <section id="depoimentos">
+        <div class="container">
+            <div class="section-title">
+                <h2>QUEM CONHECE, <span>APROVA</span>.</h2>
+                <p>Veja o que dizem nossos clientes de Lagarto e região:</p>
+            </div>
+
+            <div class="depoimentos-grid">
+                <!-- DEPOIMENTO 1 -->
+                <div class="depoimento-card">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"O Professor Valdivino mudou completamente a minha relação com a academia. Perdi 12kg em 4 meses com um treino que eu realmente gosto de fazer. Profissional excepcional!"</p>
+                    <div class="cliente-info">
+                        <img src="https://i.pravatar.cc/150?img=32" alt="Cliente">
+                        <div>
+                            <h4>Mariana Silva</h4>
+                            <span>Aluna Presencial - Lagarto/SE</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DEPOIMENTO 2 -->
+                <div class="depoimento-card">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"Sempre tive dificuldade de ganhar massa. Com a metodologia e o acompanhamento do Prof. Valdivino, consegui ganhar 8kg de massa magra. Ele é focado no resultado do aluno."</p>
+                    <div class="cliente-info">
+                        <img src="https://i.pravatar.cc/150?img=11" alt="Cliente">
+                        <div>
+                            <h4>João Pedro</h4>
+                            <span>Aluno Presencial - Lagarto/SE</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DEPOIMENTO 3 -->
+                <div class="depoimento-card">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"Mesmo morando em outra cidade, a consultoria online dele é sensacional. Ele está sempre disponível para tirar dúvidas e ajustar o treino. Recomendo de olhos fechados!"</p>
+                    <div class="cliente-info">
+                        <img src="https://i.pravatar.cc/150?img=5" alt="Cliente">
+                        <div>
+                            <h4>Camila Rocha</h4>
+                            <span>Aluna Online</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DEPOIMENTO 4 -->
+                <div class="depoimento-card">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"Minha energia voltou! O treino funcional que ele montou para mim melhorou minhas dores nas costas e meu condicionamento físico. Profissional que entende do assunto."</p>
+                    <div class="cliente-info">
+                        <img src="https://i.pravatar.cc/150?img=68" alt="Cliente">
+                        <div>
+                            <h4>Carlos Eduardo</h4>
+                            <span>Aluno Presencial - Lagarto/SE</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DEPOIMENTO 5 -->
+                <div class="depoimento-card">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"O Professor Valdivino é atencioso, pontual e muito didático. Ele explica cada exercício e a importância de cada um. Me sinto muito segura treinando com ele."</p>
+                    <div class="cliente-info">
+                        <img src="https://i.pravatar.cc/150?img=45" alt="Cliente">
+                        <div>
+                            <h4>Ana Paula</h4>
+                            <span>Aluna Presencial - Lagarto/SE</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DEPOIMENTO 6 -->
+                <div class="depoimento-card">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"Resultado real! Em 6 meses de treino, minha definição muscular mudou completamente. O acompanhamento faz toda a diferença. Vale cada centavo do investimento."</p>
+                    <div class="cliente-info">
+                        <img src="https://i.pravatar.cc/150?img=13" alt="Cliente">
+                        <div>
+                            <h4>Lucas Santos</h4>
+                            <span>Aluno Presencial - Lagarto/SE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. SEÇÃO DE CONTATO E CTA FINAL -->
+    <section id="contato">
+        <div class="container contato-content">
+            <h2>PRONTO PARA DAR O PRIMEIRO PASSO RUMO À SUA <span>MELHOR VERSÃO</span>?</h2>
+            <p>Entre em contato direto pelo WhatsApp, tire suas dúvidas e agende sua avaliação física em Lagarto - SE.</p>
+            
+            <a href="https://wa.me/5579980516149?text=Ol%C3%A1%20Professor%20Valdivino!%20Estou%20pronto%20para%20dar%20o%20primeiro%20passo." target="_blank" class="btn btn-primary btn-whatsapp-grande">
+                <i class="fab fa-whatsapp" style="font-size: 1.5rem;"></i> CHAMAR NO WHATSAPP (+55 79 9805-6149)
+            </a>
+        </div>
+    </section>
+
+    <!-- 7. RODAPÉ -->
+    <footer>
+        <div class="container footer-content">
+            <div class="logo">VS <span>|</span> VALDIVINO DOS SANTOS</div>
+            
+            <div class="footer-links">
+                <a href="#sobre">Sobre</a>
+                <a href="#especialidades">Especialidades</a>
+                <a href="#depoimentos">Depoimentos</a>
+                <a href="#contato">Contato</a>
+            </div>
+
+            <div class="social-icons">
+                <a href="https://wa.me/5579980516149" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            </div>
+
+            <p class="copyright">
+                &copy; 2024 Valdivino dos Santos - Personal Trainer. Todos os direitos reservados.<br>
+                Desenvolvido com foco em resultados.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript para Menu Mobile e Header Fixo -->
+    <script>
+        // Efeito de rolagem do Header
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Menu Mobile
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Animação suave de revelação ao rolar a página (Scroll Reveal)
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Aplicar animação aos elementos
+        document.querySelectorAll('.card, .sobre-text, .depoimento-card, .hero-text, .hero-image').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
